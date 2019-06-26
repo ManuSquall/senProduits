@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include<windows.h>
+#include <string.h>
 // taille du tableau d'article
 const N =2000;
 
@@ -153,13 +154,96 @@ void main(){
             puts("\t\t\t**************************************");
             puts("\n\n");
             puts("Quel numero d'article souhaitez vous modifier?");
+            fflush(stdin);
             scanf("%d", &numodif);
+
+            for (int i = 0; i < nbrArt; i++)
+            {
+                if(i==(numodif-1)){
+                    fflush(stdin);
+                printf("Saisissez le nom de l'article %d \n", i+1);
+                gets(tabArt[i].nomArt);
+                printf("\nSaisissez la catégorie de l'article %d \n", i+1);
+                gets(tabArt[i].catArt);
+                printf("\nSaisissez la date de fabrication de l'article %d \n", i+1);
+                gets(tabArt[i].datfArt);
+                printf("\nSaisissez le pays d'origine de l'article %d \n", i+1);
+                gets(tabArt[i].payArt);
+                printf("\nSaisissez le nom du fabricant de l'article %d \n", i+1);
+                gets(tabArt[i].nomFab);
+                }
+            }
+            
+
             goto squall;
         break;
         case 5:
+        system("cls");
+            puts("\t\t\t**************************************");
+            puts("\t\t\t**                                  **");
+            puts("\t\t\t**    5- Supprimer article          **");
+            puts("\t\t\t**                                  **");
+            puts("\t\t\t**************************************");
+            puts("\n\n");
+        int numsup;
+        puts("Quel numero d'article souhaitez vous supprimer?");
+            fflush(stdin);
+            scanf("%d", &numsup);
+
+            for (int i = 0; i < nbrArt; i++)
+            {
+                if((numsup)<=i+1){
+                    strcpy(tabArt[i].nomArt, tabArt[i+1].nomArt);
+                    strcpy(tabArt[i].catArt, tabArt[i+1].catArt);
+                    strcpy(tabArt[i].datfArt, tabArt[i+1].datfArt);
+                    strcpy(tabArt[i].payArt, tabArt[i+1].payArt);
+                    strcpy(tabArt[i].nomFab, tabArt[i+1].nomFab);
+                    nbrArt--;
+                    printf("\nArticle %d supprime",numsup);
+                }
+            }
+            
+
+
             goto squall;
         break;
         case 6:
+            system("cls");
+            puts("\t\t\t**************************************");
+            puts("\t\t\t**                                  **");
+            puts("\t\t\t**    6- Noms fabricants            **");
+            puts("\t\t\t**                                  **");
+            puts("\t\t\t**************************************");
+            puts("\n\n");
+
+            int trouve;
+            printf("======================\n");
+            printf("  NOMS    \n");
+            printf("======================\n");
+
+            for (int i = 0; i < nbrArt; i++)
+            {
+                trouve=0;
+                for (int j = 0; j < i; j++)
+                {
+                    if(strcmp(tabArt[i].nomFab,tabArt[j].nomFab)==0){
+                        trouve=1;
+                        j=i;
+                    }
+                }
+
+                if(trouve==0){
+                    printf("======================\n");
+                    printf("  %s    \n", tabArt[i].nomFab);
+                    printf("======================\n");
+                }
+                
+            }
+                                    system("pause");
+
+            
+
+
             goto squall;
         break;
         case 7:
